@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wi-Fi Password Cracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Wi-Fi Cracker</h1>
+
+        <div class="network-section">
+            <label for="network-list">Available Networks:</label>
+            <select id="network-list">
+                <option value="">Select a network</option>
+            </select>
+        </div>
+
+        <div class="file-section">
+            <label for="password-file">Password List File:</label>
+            <input type="file" id="password-file">
+        </div>
+
+        <div class="button-section">
+            <button id="scan-btn">Scan Networks</button>
+            <button id="crack-btn">Start Cracking</button>
+        </div>
+
+        <div class="progress-section">
+            <div id="progress-bar"></div>
+            <p id="progress-message">Trying passwords...</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('scan-btn').addEventListener('click', function() {
+            fetch('/scan')
+                .then(response => response.json())
+                .then(networks => {
+                    const networkList = document.getElementById('network-list');
+                    networkList.innerHTML = '';
+                    networks.forEach(network => {
+                        const option = document.createElement('option');
+                        option.value = network;
+                        option.textContent = network;
+                        networkList.appendChild(option);
+                    });
+                });
+        });
+    
+        document.getElementById('crack-btn').addEventListener('click', function() {
+            const network = document.getElementById('network-list').value;
+            const passwordFileInput = document.getElementById('password-file');
+            const passwordFile = passwordFileInput.files[0];
+    
+            if (network && passwordFile) {
+                const formData = new FormData();
+                formData.append('network', network);
+                formData.append('password_file', passwordFile);
+    
+                fetch('/crack', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.status === 'success') {
+                        alert(result.message);
+                    } else {
+                        alert("Error: " + result.message);
+                    }
+                });
+            } else {
+                alert('Please select a network and upload a password file.');
+            }
+        });
+    </script>        
+</body>
+</html>

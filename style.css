@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2c3e50; /* Darker background for better contrast */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #34495e; /* Slightly lighter background for the container */
+    padding: 20px;
+    border-radius: 15px;
+    width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* More pronounced shadow */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 26px; /* Slightly larger font size */
+    color: #f39c12; /* Bright yellow-orange color */
+}
+
+label {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    display: block;
+    color: #ecf0f1;
+}
+
+select, input[type="file"], input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #7f8c8d; /* Border for inputs */
+    background-color: #2c3e50; /* Matching background color for inputs */
+    color: #fff; /* White text for better readability */
+    margin-bottom: 15px;
+    outline: none;
+}
+
+input[type="text"]:focus, select:focus {
+    border: 1px solid #e67e22; /* Highlight border color when focused */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #e67e22; /* Button background color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #d35400; /* Darker shade on hover */
+}
+
+.progress-section {
+    margin-top: 15px;
+}
+
+#progress-bar {
+    width: 0;
+    height: 10px;
+    background-color: #2ecc71; /* Green color for progress */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#progress-message {
+    text-align: center;
+    font-size: 1.1em;
+    color: #bdc3c7; /* Lighter gray color for messages */
+}
